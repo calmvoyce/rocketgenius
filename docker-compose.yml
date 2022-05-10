@@ -1,0 +1,79 @@
+version: '3.9'
+
+# Services
+services:
+
+  # Nginx Service
+  nginx:
+    build: ./.docker/nginx
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./plugins:/var/www/wp-content/plugins
+      - ./themes:/var/www/wp-content/themes
+      - ./.docker/nginx/conf.d:/etc/nginx/conf.d
+      - phpmyadmindata:/var/www/phpmyadmin
+      - ./.docker/nginx/certs:/etc/nginx/certs
+      - ./.scripts:/.scripts
+    depends_on:
+      - php
+      - phpmyadmin
+
+  # PHP Service
+  php:
+    build: ./.docker/php
+    working_dir: /var/www
+    ports:
+      - 9000:9000
+    volumes:
+      - ./.wp:/var/www/wp
+      - ./.scripts:/.scripts
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+  # MySQL Service
+  mysql:
+    image: ${MYSQL_VERSION}
+    hostname: mysql.local
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: latest
+    volumes:
+      - ./.docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
+      - ./.docker/mysql/files:/import-files
+      - mysqldata:/var/lib/mysql
+    healthcheck:
+      test: mysqladmin ping -h 127.0.0.1 -u root --password=$$MYSQL_ROOT_PASSWORD
+      interval: 5s
+      retries: 10
+
+  # PhpMyAdmin Service
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:5-fpm-alpine
+    environment:
+      PMA_HOST: mysql
+    volumes:
+      - phpmyadmindata:/var/www/html
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+  # DNS Service
+  dns:
+    build: ./.docker/dns
+    restart: always
+    volumes:
+      - ./.docker/dns/config:/etc/dnsmasq.d
+    ports:
+      - "53:53/udp"
+    cap_add:
+      - NET_ADMIN
+
+# Volumes
+volumes:
+  mysqldata: null
+  phpmyadmindata: null
