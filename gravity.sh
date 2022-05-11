@@ -20,6 +20,9 @@ init)
 	git config --global pull.rebase false
 	bash .scripts/git-clone-list.sh repos.list
 	composer install
+	cd public
+	wp db create --allow-root
+	wp core install --url=gravity.loc --title=Gravity --admin_user=admin --admin_password=admin --admin_email=$USER_MAIL --allow-root
 	;;
 rebuild)
 	docker compose up -d --build

@@ -1,2 +1,4 @@
 /public/wp
 /vendor
+.env
+repos.list
