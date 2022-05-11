@@ -1,5 +1,5 @@
 version: '3.9'
-
+    
 # Services
 services:
 
@@ -10,15 +10,17 @@ services:
       - 80:80
       - 443:443
     volumes:
-      - ./plugins:/var/www/wp-content/plugins
-      - ./themes:/var/www/wp-content/themes
+      - ./src:/var/www/gravity
       - ./.docker/nginx/conf.d:/etc/nginx/conf.d
       - phpmyadmindata:/var/www/phpmyadmin
       - ./.docker/nginx/certs:/etc/nginx/certs
       - ./.scripts:/.scripts
+      - ./.docker/nginx/logs:/var/log/nginx/
     depends_on:
-      - php
-      - phpmyadmin
+      phpmyadmin:
+        condition: service_healthy
+      php:
+        condition: service_healthy
 
   # PHP Service
   php:
@@ -27,24 +29,30 @@ services:
     ports:
       - 9000:9000
     volumes:
-      - ./.wp:/var/www/wp
+      - ./src:/var/www/gravity
       - ./.scripts:/.scripts
+      - .:/workspace:cached
+      - /var/run/docker.sock:/var/run/docker.sock
     depends_on:
-      mysql:
+      db:
         condition: service_healthy
+    healthcheck:
+      test: php -v
+      interval: 5s
+      retries: 10
 
   # MySQL Service
-  mysql:
-    image: ${MYSQL_VERSION}
-    hostname: mysql.local
+  db:
+    image: mariadb:10.5.8
+    hostname: db.loc
     ports:
       - 3306:3306
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: latest
+      MYSQL_DATABASE: gravity
     volumes:
-      - ./.docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
-      - ./.docker/mysql/files:/import-files
+      - ./.docker/db/my.cnf:/etc/mysql/conf.d/my.cnf
+      - ./.docker/db/files:/import-files
       - mysqldata:/var/lib/mysql
     healthcheck:
       test: mysqladmin ping -h 127.0.0.1 -u root --password=$$MYSQL_ROOT_PASSWORD
@@ -59,8 +67,12 @@ services:
     volumes:
       - phpmyadmindata:/var/www/html
     depends_on:
-      mysql:
+      db:
         condition: service_healthy
+    healthcheck:
+      test: php -v
+      interval: 5s
+      retries: 10
 
   # DNS Service
   dns:
@@ -77,3 +89,4 @@ services:
 volumes:
   mysqldata: null
   phpmyadmindata: null
+  

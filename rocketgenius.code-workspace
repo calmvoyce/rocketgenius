@@ -1,0 +1,39 @@
+{
+	"folders": [
+		{
+			"path": "src/wp-content/plugins/gravityforms"
+		},
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"intelephense.format.enable": false,
+		"phpsab.executablePathCBF": "/home/vscode/.composer/vendor/bin/phpcbf",
+		"phpsab.executablePathCS": "/home/vscode/.composer/vendor/bin/phpcs",
+		"phpsab.snifferMode": "onSave",
+		"phpsab.standard": "phpcs.xml",
+
+		"runTerminalCommand.commands": [
+			{
+				"command": "./gravity.sh init",
+				"name": "Init Containers",
+				"group": "Gravity's Command Line"
+			},
+			{
+				"command": "./gravity.sh down",
+				"name": "Delete All Containers",
+				"group": "Gravity's Command Line"
+			},
+			{
+				"command": "./gravity.sh cert",
+				"name": "Generate Certificates",
+				"group": "Gravity's Command Line"
+			}
+		],
+		"[php]": {
+			"editor.defaultFormatter": "valeryanm.vscode-phpsab"
+		},
+		"git.ignoreLimitWarning": true
+	}
+}

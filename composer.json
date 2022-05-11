@@ -11,7 +11,8 @@
     },
     "sort-packages": true,
     "preferred-install": {
-      "*": "dist"
+      "*": "dist",
+      "gravityforms": "source"
     },
     "allow-plugins": {
       "johnpbloch/wordpress-core-installer": true,
@@ -40,10 +41,10 @@
 
   },
   "extra": {
-    "wordpress-install-dir": ".wp/latest",
+    "wordpress-install-dir": "public/wp",
     "installer-paths": {
-      "plugins/{$name}":[ "type:wordpress-plugin" ],
-      "themes/{$name}":[ "type:wordpress-themes" ]
+      "public/plugins/{$name}":[ "type:wordpress-plugin" ],
+      "public/wp/wp-content/themes/{$name}":[ "type:wordpress-themes" ]
     }
   }
 }

@@ -4,6 +4,9 @@ if [ -f .env ]; then
   export $(echo $(cat .env | sed 's/#.*//g'| xargs) | envsubst)
 fi
 
+GREEN='\033[1;32m'
+NC='\033[0m'
+
 ##  docker compose down -v --rmi all --remove-orphans
 ##  docker compose exec -w/var/www/projects/X php wp --allow-root db create
 ##  docker compose exec -w/var/www/projects/X php wp --allow-root --debug db import
@@ -12,10 +15,11 @@ fi
 
 case "$1" in
 init)
+	bash gravity.sh workspace
 	git config --global core.filemode false
 	git config --global pull.rebase false
-	./.scripts/git-clone-list.sh $PERSONAL_TOKEN repos.list
-	docker compose up
+	bash .scripts/git-clone-list.sh repos.list
+	composer install
 	;;
 rebuild)
 	docker compose up -d --build
@@ -36,7 +40,6 @@ cert)
 	bash .scripts/certificates.sh root
 	bash .scripts/certificates.sh generate
 	bash .scripts/certificates.sh install
-	docker compose restart
 	;;
 import)
 	# put the file on .docker/mysql/files/{project_name}.sql
@@ -63,6 +66,26 @@ search-replace)
 	;;
 composer)
 	docker compose exec php composer $1 $2
+	;;
+workspace)
+	if [ ! -f /root/.ssh/id_rsa ]; then
+    	ssh-keygen -v -t ed25519 -C $USER_MAIL -f /root/.ssh/id_rsa -N ''
+	fi
+	eval "$(ssh-agent -s)"
+	ssh-add /root/.ssh/id_rsa
+	printf "${GREEN}Copy the content bellow into the following github page: https://github.com/settings/ssh/new${NC} \n\n"
+	cat /root/.ssh/id_rsa.pub
+	printf "\n\n"
+	read -p "Press any key when you're done..."
+
+	#git configuration
+	git config --global pull.rebase false
+	git config --global user.name $USER_NAME
+	git config --global user.email $USER_MAIL
+	git config --global merge.tool vscode
+	git config --global mergetool.vscode.cmd 'code --wait $MERGED'
+	git config --global diff.tool vscode
+	git config --global difftool.vscode.cmd 'code --wait --diff $LOCAL $REMOTE'
 	;;
 *)
 	cat <<EOF
