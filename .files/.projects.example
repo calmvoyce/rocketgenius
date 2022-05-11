@@ -1,8 +1,0 @@
-projects=calmvoyce
-projects=eyeris
-
-calmvoyce.domain=example.com
-calmvoyce.repository=repository.git
-
-eyeris.repository=git@github.com:successagency/myeyeris.com.git
-eyeris.branch=master

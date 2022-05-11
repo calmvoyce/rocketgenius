@@ -21,8 +21,8 @@ init)
 	bash .scripts/git-clone-list.sh repos.list
 	composer install
 	cd public
-	wp db create --allow-root
-	wp core install --url=gravity.loc --title=Gravity --admin_user=admin --admin_password=admin --admin_email=$USER_MAIL --allow-root
+	wp db create
+	wp core install --url=gravity.loc --title=Gravity --admin_user=admin --admin_password=admin --admin_email=$USER_MAIL
 	;;
 rebuild)
 	docker compose up -d --build
@@ -55,9 +55,7 @@ import)
 	docker compose exec -w/var/www/projects/$2 -- php wp --allow-root --debug search-replace "http://$3" "http://$2.local"
 	;;
 fix-permissions)
-	# $2 is the project name
-	docker compose exec -w/var/www/projects/$2 php bash /.scripts/fix-wordpress-permissions.sh .
-	docker compose exec -w/var/www/projects/$2 nginx bash /.scripts/fix-wordpress-permissions.sh .
+	docker compose exec nginx bash /.scripts/fix-wordpress-permissions.sh .
 	;;
 search-replace)
 	# $2 is the project name
@@ -71,15 +69,16 @@ composer)
 	docker compose exec php composer $1 $2
 	;;
 workspace)
-	if [ ! -f /root/.ssh/id_rsa ]; then
-    	ssh-keygen -v -t ed25519 -C $USER_MAIL -f /root/.ssh/id_rsa -N ''
+	if [ ! -f /vscode/.ssh/id_rsa ]; then
+    	ssh-keygen -v -t ed25519 -C $USER_MAIL -f /vscode/.ssh/id_rsa -N ''
 	fi
 	eval "$(ssh-agent -s)"
-	ssh-add /root/.ssh/id_rsa
+	ssh-add /vscode/.ssh/id_rsa
 	printf "${GREEN}Copy the content bellow into the following github page: https://github.com/settings/ssh/new${NC} \n\n"
-	cat /root/.ssh/id_rsa.pub
+	cat /vscode/.ssh/id_rsa.pub
 	printf "\n\n"
 	read -p "Press any key when you're done..."
+	ssh-add -l -E sha256
 
 	#git configuration
 	git config --global pull.rebase false

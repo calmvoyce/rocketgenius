@@ -3,7 +3,7 @@
 {
 	"name": "ROCKETGENIUS",
 	"dockerComposeFile": [ "../docker-compose.yml" ],
-	"service": "php",
+	"service": "dev",
   	"workspaceFolder": "/workspace",
   	"shutdownAction": "stopCompose",
 

@@ -10,7 +10,7 @@ services:
       - 80:80
       - 443:443
     volumes:
-      - ./src:/var/www/gravity
+      - ./public:/var/www/gravity
       - ./.docker/nginx/conf.d:/etc/nginx/conf.d
       - phpmyadmindata:/var/www/phpmyadmin
       - ./.docker/nginx/certs:/etc/nginx/certs
@@ -19,20 +19,22 @@ services:
     depends_on:
       phpmyadmin:
         condition: service_healthy
-      php:
+      dev:
         condition: service_healthy
 
-  # PHP Service
-  php:
-    build: ./.docker/php
+  # DEV Service
+  dev:
+    build: ./.docker/dev
     working_dir: /var/www
+    user: vscode
     ports:
       - 9000:9000
     volumes:
-      - ./src:/var/www/gravity
+      - ./public:/var/www/gravity
       - ./.scripts:/.scripts
       - .:/workspace:cached
       - /var/run/docker.sock:/var/run/docker.sock
+      - ./.devcontainer/.ssh:/vscode/.ssh
     depends_on:
       db:
         condition: service_healthy
