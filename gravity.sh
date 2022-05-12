@@ -13,6 +13,7 @@ NC='\033[0m'
 ##  docker compose exec -w/var/www/projects/X php wp --allow-root search-replace 'https://X.com' 'https://X.local'
 ##  docker compose exec -w/projects/local composer composer install
 
+
 case "$1" in
 init)
 	bash gravity.sh workspace
@@ -69,13 +70,13 @@ composer)
 	docker compose exec php composer $1 $2
 	;;
 workspace)
-	if [ ! -f /vscode/.ssh/id_rsa ]; then
-    	ssh-keygen -v -t ed25519 -C $USER_MAIL -f /vscode/.ssh/id_rsa -N ''
+	if [ ! -f /home/vscode/.ssh/id_rsa ]; then
+    	ssh-keygen -v -t ed25519 -C $USER_MAIL -f /home/vscode/.ssh/id_rsa -N ''
 	fi
 	eval "$(ssh-agent -s)"
-	ssh-add /vscode/.ssh/id_rsa
+	ssh-add /home/vscode/.ssh/id_rsa
 	printf "${GREEN}Copy the content bellow into the following github page: https://github.com/settings/ssh/new${NC} \n\n"
-	cat /vscode/.ssh/id_rsa.pub
+	cat /home/vscode/.ssh/id_rsa.pub
 	printf "\n\n"
 	read -p "Press any key when you're done..."
 	ssh-add -l -E sha256
@@ -88,6 +89,11 @@ workspace)
 	git config --global mergetool.vscode.cmd 'code --wait $MERGED'
 	git config --global diff.tool vscode
 	git config --global difftool.vscode.cmd 'code --wait --diff $LOCAL $REMOTE'
+
+	ssh -T git@github.com
+
+    export PATH=$PATH:~/.composer/vendor/bin
+	phpcs --config-set installed_paths /workspace/vendor/wp-coding-standards/wpcs,/workspace/vendor/gravityforms/rgcodestandards
 	;;
 *)
 	cat <<EOF

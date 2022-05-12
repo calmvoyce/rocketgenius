@@ -4,15 +4,18 @@
 			"path": "public/plugins/gravityforms"
 		},
 		{
+			"path": "public/plugins/gravitycore"
+		},
+		{
 			"path": "."
 		}
 	],
 	"settings": {
 		"intelephense.format.enable": false,
-		"phpsab.executablePathCBF": "/home/vscode/.composer/vendor/bin/phpcbf",
-		"phpsab.executablePathCS": "/home/vscode/.composer/vendor/bin/phpcs",
+		"phpsab.executablePathCBF": "/workspace/vendor/bin/phpcbf",
+		"phpsab.executablePathCS": "/workspace/vendor/bin/phpcs",
 		"phpsab.snifferMode": "onSave",
-		"phpsab.standard": "phpcs.xml",
+		"phpsab.standard": "rgcodestandards",
 
 		"runTerminalCommand.commands": [
 			{
@@ -34,6 +37,10 @@
 		"[php]": {
 			"editor.defaultFormatter": "valeryanm.vscode-phpsab"
 		},
-		"git.ignoreLimitWarning": true
+		"git.ignoreLimitWarning": true,
+		"editor.insertSpaces": false,
+		"editor.detectIndentation": false,
+		"phpsab.autoRulesetSearch": true,
+		"phpsab.debug": true
 	}
 }

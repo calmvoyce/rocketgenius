@@ -34,7 +34,8 @@ services:
       - ./.scripts:/.scripts
       - .:/workspace:cached
       - /var/run/docker.sock:/var/run/docker.sock
-      - ./.devcontainer/.ssh:/vscode/.ssh
+      - ./.devcontainer/.ssh:/home/vscode/.ssh
+      - ./vendor:/home/vscode/.composer/vendor
     depends_on:
       db:
         condition: service_healthy

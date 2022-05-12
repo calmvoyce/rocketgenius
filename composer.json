@@ -21,30 +21,40 @@
   },
   "repositories": [
     {
+      "type": "package",
+      "package": {
+        "name": "gravityforms/rgcodestandards",
+        "version": "0.1.0",
+        "source": {
+          "type": "git",
+          "url": "git@github.com:gravityforms/rgcodestandards.git",
+          "reference": "master"
+        }
+      }
+    },
+    {
       "type": "composer",
       "url": "https://wpackagist.org"
     }
   ],
   "require": {
-
     "php": "^7.4",
     "composer/installers": "@stable",
+    "gravityforms/rgcodestandards": "^0.1.0",
     "johnpbloch/wordpress-core": "@stable",
     "johnpbloch/wordpress-core-installer": "@stable",
-
-    "wpackagist-plugin/show-hooks":"@stable",
-    "wpackagist-plugin/theme-switcha":"@stable",
-
-    "wpackagist-theme/astra":"@stable",
-    "wpackagist-theme/hello-elementor":"@stable",
-    "wpackagist-theme/kadence":"@stable"
-
+    "wp-coding-standards/wpcs": "^2.3",
+    "wpackagist-plugin/show-hooks": "@stable",
+    "wpackagist-plugin/theme-switcha": "@stable",
+    "wpackagist-theme/astra": "@stable",
+    "wpackagist-theme/hello-elementor": "@stable",
+    "wpackagist-theme/kadence": "@stable"
   },
   "extra": {
     "wordpress-install-dir": "public/wp",
     "installer-paths": {
       "public/plugins/{$name}":[ "type:wordpress-plugin" ],
-      "public/wp/wp-content/themes/{$name}":[ "type:wordpress-themes" ]
+      "public/wp/wp-content/themes/{$name}":[ "type:wordpress-theme" ]
     }
   }
 }
