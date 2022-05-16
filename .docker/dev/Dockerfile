@@ -22,7 +22,7 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 
 # Install PHP extensions
 RUN apt-get update -y && apt-get install -y sudo libpng-dev libzip-dev zip mariadb-client \
-    && docker-php-ext-install mysqli gd zip
+    && docker-php-ext-install gd zip mysqli
 
 # Install Docker Compose Commands
 RUN export DEBIAN_FRONTEND=noninteractive \
@@ -30,14 +30,14 @@ RUN export DEBIAN_FRONTEND=noninteractive \
     && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg \
     && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu focal stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 RUN apt-get update && apt-get -y install --no-install-recommends docker-ce docker-ce-cli containerd.io \
-    && mkdir -p /root/.docker/cli-plugins/ \
-    && curl -SL https://github.com/docker/compose/releases/download/v2.0.1/docker-compose-linux-x86_64 -o /root/.docker/cli-plugins/docker-compose \
-    && chmod +x /root/.docker/cli-plugins/docker-compose
+    && mkdir -p /vscode/.docker/cli-plugins/ \
+    && curl -SL https://github.com/docker/compose/releases/download/v2.0.1/docker-compose-linux-x86_64 -o /vscode/.docker/cli-plugins/docker-compose \
+    && chmod +x /vscode/.docker/cli-plugins/docker-compose
 
 # Configure PHP
-RUN export PAGER='busybox less' \
-    && echo 'memory_limit = 600M' >> /usr/local/etc/php/conf.d/docker-php-ram-limit.ini \
-    && echo 'max_execution_time = 600' >> /usr/local/etc/php/conf.d/docker-php-time-limit.ini
+RUN export PAGER='busybox less'
+RUN echo 'memory_limit = 600M' >> /usr/local/etc/php/conf.d/docker-php-ram-limit.ini
+RUN echo 'max_execution_time = 600' >> /usr/local/etc/php/conf.d/docker-php-time-limit.ini
 
 # Install xdebug
 RUN yes | pecl install xdebug \

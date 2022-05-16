@@ -30,7 +30,7 @@ services:
     ports:
       - 9000:9000
     volumes:
-      - ./public:/var/www/gravity
+      - ./public:/var/www/gravity:cached
       - ./.scripts:/.scripts
       - .:/workspace:cached
       - /var/run/docker.sock:/var/run/docker.sock
@@ -66,7 +66,7 @@ services:
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:5-fpm-alpine
     environment:
-      PMA_HOST: mysql
+      PMA_HOST: db
     volumes:
       - phpmyadmindata:/var/www/html
     depends_on:
