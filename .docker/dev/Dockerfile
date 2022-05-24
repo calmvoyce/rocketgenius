@@ -60,7 +60,7 @@ RUN curl -sSL https://getcomposer.org/installer | php \
 # Install nvm
 # [Choice] Node.js version: none, lts/*, 16, 14, 12, 10
 ARG NODE_VERSION="lts/*"
-ENV NVM_DIR=/usr/local/share/nvm
+ENV NVM_DIR=/home/vscode/.nvm
 ENV NVM_SYMLINK_CURRENT=true \
     PATH=${NVM_DIR}/current/bin:${PATH}
 RUN bash /tmp/library-scripts/node-debian.sh "${NVM_DIR}" "${NODE_VERSION}" "${USERNAME}" \

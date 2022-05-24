@@ -2,3 +2,4 @@
 /vendor
 .env
 repos.list
+.DS_Store
