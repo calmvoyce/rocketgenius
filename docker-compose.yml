@@ -29,6 +29,7 @@ services:
     user: vscode
     ports:
       - 9000:9000
+      - 9003:9003
     volumes:
       - ./public:/var/www/gravity:cached
       - ./.scripts:/.scripts

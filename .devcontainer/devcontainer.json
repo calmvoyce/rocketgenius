@@ -33,6 +33,6 @@
 	//"remoteUser": "vscode",
 	"features": {
 		"git": "latest",
-		"git-lfs": "latest"
+		"git-lfs": "3.1.4"
 	}
 }
