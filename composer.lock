@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "95b47eb6d81b78f282505b57a10476da",
+    "content-hash": "45f2cfda497f01cf67cdee91f686496e",
     "packages": [
         {
             "name": "composer/installers",
@@ -162,16 +162,16 @@
         },
         {
             "name": "johnpbloch/wordpress-core",
-            "version": "5.9.3",
+            "version": "6.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/johnpbloch/wordpress-core.git",
-                "reference": "455d38c7b7bcdce3e0a1c6108eccca8de1860361"
+                "reference": "90d8de3a682f2ed93ebe8cf99bec8fb297d43967"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/johnpbloch/wordpress-core/zipball/455d38c7b7bcdce3e0a1c6108eccca8de1860361",
-                "reference": "455d38c7b7bcdce3e0a1c6108eccca8de1860361",
+                "url": "https://api.github.com/repos/johnpbloch/wordpress-core/zipball/90d8de3a682f2ed93ebe8cf99bec8fb297d43967",
+                "reference": "90d8de3a682f2ed93ebe8cf99bec8fb297d43967",
                 "shasum": ""
             },
             "require": {
@@ -179,7 +179,7 @@
                 "php": ">=5.6.20"
             },
             "provide": {
-                "wordpress/core-implementation": "5.9.3"
+                "wordpress/core-implementation": "6.0.0"
             },
             "type": "wordpress-core",
             "notification-url": "https://packagist.org/downloads/",
@@ -206,7 +206,7 @@
                 "source": "https://core.trac.wordpress.org/browser",
                 "wiki": "https://codex.wordpress.org/"
             },
-            "time": "2022-04-05T19:23:48+00:00"
+            "time": "2022-05-24T19:10:11+00:00"
         },
         {
             "name": "johnpbloch/wordpress-core-installer",
@@ -389,15 +389,15 @@
         },
         {
             "name": "wpackagist-plugin/theme-switcha",
-            "version": "2.9",
+            "version": "3.0",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/theme-switcha/",
-                "reference": "tags/2.9"
+                "reference": "tags/3.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/theme-switcha.2.9.zip"
+                "url": "https://downloads.wordpress.org/plugin/theme-switcha.3.0.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
@@ -443,15 +443,15 @@
         },
         {
             "name": "wpackagist-theme/kadence",
-            "version": "1.1.18",
+            "version": "1.1.19",
             "source": {
                 "type": "svn",
                 "url": "https://themes.svn.wordpress.org/kadence/",
-                "reference": "1.1.18"
+                "reference": "1.1.19"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/theme/kadence.1.1.18.zip"
+                "url": "https://downloads.wordpress.org/theme/kadence.1.1.19.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
@@ -467,6 +467,7 @@
         "composer/installers": 0,
         "johnpbloch/wordpress-core": 0,
         "johnpbloch/wordpress-core-installer": 0,
+        "wp-coding-standards/wpcs": 0,
         "wpackagist-plugin/show-hooks": 0,
         "wpackagist-plugin/theme-switcha": 0,
         "wpackagist-theme/astra": 0,

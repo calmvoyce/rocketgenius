@@ -4,19 +4,13 @@
 			"path": "public/plugins/gravityforms"
 		},
 		{
-			"path": "public/plugins/gravitycore"
+			"path": "public/plugins/gravityformscoupons"
 		},
 		{
 			"path": "."
 		}
 	],
 	"settings": {
-		"intelephense.format.enable": false,
-		"phpsab.executablePathCBF": "/workspace/vendor/bin/phpcbf",
-		"phpsab.executablePathCS": "/workspace/vendor/bin/phpcs",
-		"phpsab.snifferMode": "onSave",
-		"phpsab.standard": "rgcodestandards",
-
 		"runTerminalCommand.commands": [
 			{
 				"command": "./gravity.sh init",
@@ -34,13 +28,23 @@
 				"group": "Gravity's Command Line"
 			}
 		],
+		"intelephense.format.enable": false,
 		"[php]": {
 			"editor.defaultFormatter": "valeryanm.vscode-phpsab"
 		},
 		"git.ignoreLimitWarning": true,
+		"editor.formatOnSave": true,
 		"editor.insertSpaces": false,
 		"editor.detectIndentation": false,
-		"phpsab.autoRulesetSearch": true,
-		"phpsab.debug": true
+		"editor.formatOnPaste": true,
+		"editor.formatOnSaveMode": "modifications",
+		"phpsab.autoRulesetSearch": false,
+		"phpsab.debug": true,
+		"phpsab.executablePathCBF": "/workspace/vendor/bin/phpcbf",
+		"phpsab.executablePathCS": "/workspace/vendor/bin/phpcs",
+		"phpsab.fixerEnable": true,
+		"phpsab.snifferShowSources": true,
+		"phpsab.snifferMode": "onSave",
+		"phpsab.standard": "rgcodestandards"
 	}
 }

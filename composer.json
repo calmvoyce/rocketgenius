@@ -43,7 +43,7 @@
     "gravityforms/rgcodestandards": "^0.1.0",
     "johnpbloch/wordpress-core": "@stable",
     "johnpbloch/wordpress-core-installer": "@stable",
-    "wp-coding-standards/wpcs": "^2.3",
+    "wp-coding-standards/wpcs": "@stable",
     "wpackagist-plugin/show-hooks": "@stable",
     "wpackagist-plugin/theme-switcha": "@stable",
     "wpackagist-theme/astra": "@stable",

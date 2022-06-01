@@ -91,8 +91,7 @@ workspace)
 	git config --global difftool.vscode.cmd 'code --wait --diff $LOCAL $REMOTE'
 
 	ssh -T git@github.com
-
-    export PATH=$PATH:~/.composer/vendor/bin
+	
 	phpcs --config-set installed_paths /workspace/vendor/wp-coding-standards/wpcs,/workspace/vendor/gravityforms/rgcodestandards
 	;;
 *)
