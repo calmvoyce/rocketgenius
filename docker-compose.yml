@@ -50,7 +50,7 @@ services:
     image: mariadb:10.5.8
     hostname: db.loc
     ports:
-      - 3306:3306
+      - 9006:3306
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: gravity
