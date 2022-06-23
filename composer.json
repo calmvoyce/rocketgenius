@@ -48,7 +48,8 @@
     "wpackagist-plugin/theme-switcha": "@stable",
     "wpackagist-theme/astra": "@stable",
     "wpackagist-theme/hello-elementor": "@stable",
-    "wpackagist-theme/kadence": "@stable"
+	"wpackagist-theme/kadence": "@stable",
+	"phpunit/phpunit": "^9.5"
   },
   "extra": {
     "wordpress-install-dir": "public/wp",

@@ -26,8 +26,11 @@
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	"forwardPorts": [],
 
+	// Use initializeCommand to run commands in the host machine before the container is created.
+	"initializeCommand": "",
+
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "bash gravity.sh workspace",
+	"postCreateCommand": "bash gravity.sh init",
 
 	// Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
 	//"remoteUser": "vscode",

@@ -60,11 +60,11 @@ define( 'DB_COLLATE', '' );
 $table_prefix = 'wp_';
 
 /**
- * Define new path to wordpress
+ * Define new path to WordPress
  */
 define( 'WP_SITEURL', 'https://' . $_SERVER['SERVER_NAME'] . '/wp' );
 define( 'WP_HOME', 'https://' . $_SERVER['SERVER_NAME'] );
-define( 'WP_PLUGIN_DIR', dirname(__FILE__) . '/plugins' );
+define( 'WP_PLUGIN_DIR', dirname( __FILE__ ) . '/plugins' );
 define( 'WP_PLUGIN_URL', 'https://' . $_SERVER['SERVER_NAME'] . '/plugins' );
 
 /**

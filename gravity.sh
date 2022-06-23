@@ -19,6 +19,8 @@ init)
 	bash gravity.sh workspace
 	git config --global core.filemode false
 	git config --global pull.rebase false
+	bash .scripts/install-houston.sh
+	git clone git@github.com:gravityforms/internal-docs.git /home/vscode/internal-docs
 	bash .scripts/git-clone-list.sh repos.list
 	composer install
 	cd public

@@ -4,7 +4,16 @@
 			"path": "public/plugins/gravityforms"
 		},
 		{
+			"path": "public/plugins/gravityformsgeolocation"
+		},
+		{
 			"path": "public/plugins/gravityformscoupons"
+		},
+		{
+			"path": "public/plugins/gravityformsaddongenerator"
+		},
+		{
+			"path": "/home/vscode/internal-docs"
 		},
 		{
 			"path": "."
@@ -45,6 +54,7 @@
 		"phpsab.fixerEnable": true,
 		"phpsab.snifferShowSources": true,
 		"phpsab.snifferMode": "onSave",
-		"phpsab.standard": "rgcodestandards"
+		"phpsab.standard": "rgcodestandards",
+		"phpunit.files": "{test,tests,Test,Tests}/**/*-test.php"
 	}
 }
