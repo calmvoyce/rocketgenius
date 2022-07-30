@@ -16,16 +16,13 @@ NC='\033[0m'
 
 case "$1" in
 init)
-	bash gravity.sh workspace
+	bash workspace.sh workspace
 	git config --global core.filemode false
 	git config --global pull.rebase false
-	bash .scripts/install-houston.sh
-	git clone git@github.com:gravityforms/internal-docs.git /home/vscode/internal-docs
-	bash .scripts/git-clone-list.sh repos.list
 	composer install
 	cd public
 	wp db create
-	wp core install --url=gravity.loc --title=Gravity --admin_user=admin --admin_password=admin --admin_email=$USER_MAIL
+	wp core install --url=wordpress.local --title=WordPress --admin_user=admin --admin_password=admin --admin_email=$USER_MAIL
 	;;
 rebuild)
 	docker compose up -d --build
@@ -94,7 +91,7 @@ workspace)
 
 	ssh -T git@github.com
 	
-	phpcs --config-set installed_paths /workspace/vendor/wp-coding-standards/wpcs,/workspace/vendor/gravityforms/rgcodestandards
+	phpcs --config-set installed_paths /workspace/vendor/wp-coding-standards/wpcs
 	;;
 *)
 	cat <<EOF
@@ -102,7 +99,7 @@ workspace)
 Command line interface for the Docker-based web development environment.
 
 Usage:
-    gravity <command> [options] [arguments]
+    workspace <command> [options] [arguments]
 
 Available commands:
     cert ...................................... Certificate management commands

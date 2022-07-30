@@ -1,7 +1,7 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
 // https://github.com/microsoft/vscode-dev-containers/tree/v0.205.2/containers/php
 {
-	"name": "ROCKETGENIUS",
+	"name": "WORDPRESS",
 	"dockerComposeFile": [ "../docker-compose.yml" ],
 	"service": "dev",
   	"workspaceFolder": "/workspace",
@@ -30,7 +30,7 @@
 	"initializeCommand": "",
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "bash gravity.sh init",
+	"postCreateCommand": "bash workspace.sh init",
 
 	// Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
 	//"remoteUser": "vscode",

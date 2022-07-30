@@ -10,7 +10,7 @@ services:
       - 80:80
       - 443:443
     volumes:
-      - ./public:/var/www/gravity
+      - ./public:/var/www/wordpress
       - ./.docker/nginx/conf.d:/etc/nginx/conf.d
       - phpmyadmindata:/var/www/phpmyadmin
       - ./.docker/nginx/certs:/etc/nginx/certs
@@ -31,7 +31,7 @@ services:
       - 9000:9000
       - 9003:9003
     volumes:
-      - ./public:/var/www/gravity:cached
+      - ./public:/var/www/wordpress:cached
       - ./.scripts:/.scripts
       - .:/workspace:cached
       - /var/run/docker.sock:/var/run/docker.sock
@@ -48,12 +48,12 @@ services:
   # MySQL Service
   db:
     image: mariadb:10.5.8
-    hostname: db.loc
+    hostname: db.local
     ports:
       - 9006:3306
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: gravity
+      MYSQL_DATABASE: wordpress
     volumes:
       - ./.docker/db/my.cnf:/etc/mysql/conf.d/my.cnf
       - ./.docker/db/files:/import-files

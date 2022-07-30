@@ -1,40 +1,25 @@
 {
 	"folders": [
 		{
-			"path": "public/plugins/gravityforms"
-		},
-		{
-			"path": "public/plugins/gravityformsgeolocation"
-		},
-		{
-			"path": "public/plugins/gravityformscoupons"
-		},
-		{
-			"path": "public/plugins/gravityformsaddongenerator"
-		},
-		{
-			"path": "/home/vscode/internal-docs"
-		},
-		{
 			"path": "."
 		}
 	],
 	"settings": {
 		"runTerminalCommand.commands": [
 			{
-				"command": "./gravity.sh init",
+				"command": "./workspace.sh init",
 				"name": "Init Containers",
-				"group": "Gravity's Command Line"
+				"group": "Workspace's Command Line"
 			},
 			{
-				"command": "./gravity.sh down",
+				"command": "./workspace.sh down",
 				"name": "Delete All Containers",
-				"group": "Gravity's Command Line"
+				"group": "Workspace's Command Line"
 			},
 			{
-				"command": "./gravity.sh cert",
+				"command": "./workspace.sh cert",
 				"name": "Generate Certificates",
-				"group": "Gravity's Command Line"
+				"group": "Workspace's Command Line"
 			}
 		],
 		"intelephense.format.enable": false,
@@ -54,7 +39,7 @@
 		"phpsab.fixerEnable": true,
 		"phpsab.snifferShowSources": true,
 		"phpsab.snifferMode": "onSave",
-		"phpsab.standard": "rgcodestandards",
+		"phpsab.standard": "phpcs.xml",
 		"phpunit.files": "{test,tests,Test,Tests}/**/*-test.php"
 	}
 }

@@ -1,6 +1,6 @@
 FROM alpine:3
 
-LABEL maintainer "devs@rocketgenius.com"
+LABEL maintainer "mariacdadalt@gmail.com"
 
 RUN apk --no-cache add dnsmasq
 

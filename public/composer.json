@@ -1,6 +1,6 @@
 {
-  "name": "mariacdadalt/workspace",
-  "description": "Maria C. Dadalt's Workspace",
+  "name": "mariacdadalt/wpstarter",
+  "description": "Maria C. Dadalt's WP Starter",
   "type": "project",
   "license": "GPLv2",
   "minimum-stability": "dev",
@@ -13,6 +13,11 @@
     "preferred-install": {
       "*": "dist",
       "mariacdadalt": "source"
+    },
+    "allow-plugins": {
+      "johnpbloch/wordpress-core-installer": true,
+      "composer/installers": true,
+      "wecodemore/wpstarter": true
     }
   },
   "repositories": [
@@ -22,7 +27,9 @@
     }
   ],
   "require": {
-    "wp-coding-standards/wpcs": "@stable",
-	  "phpunit/phpunit": "^9.5"
+    "johnpbloch/wordpress": "4.9.*",
+    "wecodemore/wpstarter": "^3"
+  },
+  "extra": {
   }
 }

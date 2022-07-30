@@ -5,10 +5,10 @@ default_md = sha256
 distinguished_name = dn
 
 [dn]
-C=US
-ST=VA
-L=Virginia Beach
-O=Rocketgenius
+C=BR
+ST=PR
+L=Curitiba
+O=MariaCDadalt
 OU=Software
-emailAddress=devs@rocketgenius.com
-CN=Rocketgenius
+emailAddress=mariacdadalt@gmail.com
+CN=MariaCDadalt

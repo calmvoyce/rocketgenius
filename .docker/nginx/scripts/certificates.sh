@@ -39,7 +39,7 @@ install)
 Certificate management commands.
 
 Usage:
-    gravity cert <command>
+    workspace cert <command>
 
 Available commands:
     generate .................................. Generate a new certificate
