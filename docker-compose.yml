@@ -5,7 +5,7 @@ services:
 
   # Nginx Service
   nginx:
-    build: ./.docker/nginx
+    image: nginx:1.19-alpine
     ports:
       - 80:80
       - 443:443

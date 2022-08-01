@@ -16,57 +16,20 @@ NC='\033[0m'
 
 case "$1" in
 init)
+	bash .scripts/edit-host-file.sh
 	bash workspace.sh workspace
 	git config --global core.filemode false
 	git config --global pull.rebase false
 	composer install
 	cd public
+	composer install
 	wp db create
 	wp core install --url=wordpress.local --title=WordPress --admin_user=admin --admin_password=admin --admin_email=$USER_MAIL
-	;;
-rebuild)
-	docker compose up -d --build
-	;;
-restart)
-	docker compose restart
-	;;
-start)
-	docker compose start
-	;;
-stop)
-	docker compose stop
-	;;
-down)
-	docker compose down --rmi all --remove-orphans
 	;;
 cert)
 	bash .scripts/certificates.sh root
 	bash .scripts/certificates.sh generate
 	bash .scripts/certificates.sh install
-	;;
-import)
-	# put the file on .docker/mysql/files/{project_name}.sql
-	# $2 is the project name
-	# $3 is the project domain
-	docker compose exec -w/var/www/projects/$2 php wp --allow-root db create
-	bash .scripts/large-database.sh "$2.sql" $2
-	docker compose exec -w/var/www/projects/$2 -- php wp --allow-root --debug search-replace "$3" "$2.local"
-	docker compose exec -w/var/www/projects/$2 -- php wp --allow-root --debug search-replace "https://$3" "https://$2.local"
-	docker compose exec -w/var/www/projects/$2 -- php wp --allow-root --debug search-replace "http://$3" "http://$2.local"
-	;;
-fix-permissions)
-	docker compose exec nginx bash /.scripts/fix-wordpress-permissions.sh .
-	;;
-search-replace)
-	# $2 is the project name
-	# $3 is the domain to change
-	docker compose exec -w/var/www/projects/$2 -- php wp --allow-root --debug search-replace "$3" "$2.local"
-	docker compose exec -w/var/www/projects/$2 -- php wp --allow-root --debug search-replace "https://$3" "https://$2.local"
-	docker compose exec -w/var/www/projects/$2 -- php wp --allow-root --debug search-replace "http://$3" "http://$2.local"
-	docker compose exec -w/var/www/projects/$2 -- php wp --allow-root --debug search-replace "http://$2.local" "https://$2.local"
-	;;
-composer)
-	docker compose exec php composer $1 $2
 	;;
 workspace)
 	if [ ! -f /home/vscode/.ssh/id_rsa ]; then

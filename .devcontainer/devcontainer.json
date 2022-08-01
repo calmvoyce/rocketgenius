@@ -24,15 +24,20 @@
 	],
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	"forwardPorts": [],
+	"forwardPorts": [
+		9003
+	],
 
 	// Use initializeCommand to run commands in the host machine before the container is created.
-	"initializeCommand": "",
+	"initializeCommand": "bash workspace.sh cert",
 
 	// Use 'postCreateCommand' to run commands after the container is created.
 	"postCreateCommand": "bash workspace.sh init",
 
+	// A command to run each time the container is successfully started.
+	"postStartCommand": "bash workspace.sh workspace",
 	// Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
+	
 	//"remoteUser": "vscode",
 	"features": {
 		"git": "latest",

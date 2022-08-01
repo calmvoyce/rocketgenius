@@ -1,35 +1,34 @@
 {
-  "name": "mariacdadalt/wpstarter",
-  "description": "Maria C. Dadalt's WP Starter",
-  "type": "project",
-  "license": "GPLv2",
-  "minimum-stability": "dev",
-  "prefer-stable": true,
-  "config": {
-    "platform": {
-      "php": "7.4.7"
-    },
-    "sort-packages": true,
-    "preferred-install": {
-      "*": "dist",
-      "mariacdadalt": "source"
-    },
-    "allow-plugins": {
-      "johnpbloch/wordpress-core-installer": true,
-      "composer/installers": true,
-      "wecodemore/wpstarter": true
-    }
-  },
-  "repositories": [
-    {
-      "type": "composer",
-      "url": "https://wpackagist.org"
-    }
-  ],
-  "require": {
-    "johnpbloch/wordpress": "4.9.*",
-    "wecodemore/wpstarter": "^3"
-  },
-  "extra": {
-  }
+	"name": "mariacdadalt/wpstarter",
+	"description": "Maria C. Dadalt's WP Starter",
+	"type": "project",
+	"license": "GPLv2",
+	"minimum-stability": "dev",
+	"prefer-stable": true,
+	"config": {
+		"platform": {
+			"php": "7.4.7"
+		},
+		"sort-packages": true,
+		"preferred-install": {
+			"*": "dist",
+			"mariacdadalt": "source"
+		},
+		"allow-plugins": {
+			"johnpbloch/wordpress-core-installer": true,
+			"composer/installers": true,
+			"wecodemore/wpstarter": true
+		}
+	},
+	"repositories": [
+		{
+			"type": "composer",
+			"url": "https://wpackagist.org"
+		}
+	],
+	"require": {
+		"johnpbloch/wordpress": "^6",
+		"wecodemore/wpstarter": "^3"
+	},
+	"extra": {}
 }
