@@ -78,17 +78,6 @@ services:
       interval: 5s
       retries: 10
 
-  # DNS Service
-  dns:
-    build: ./.docker/dns
-    restart: always
-    volumes:
-      - ./.docker/dns/config:/etc/dnsmasq.d
-    ports:
-      - "53:53/udp"
-    cap_add:
-      - NET_ADMIN
-
 # Volumes
 volumes:
   mysqldata: null
