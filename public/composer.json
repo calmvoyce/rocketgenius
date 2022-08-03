@@ -11,8 +11,8 @@
 		},
 		"sort-packages": true,
 		"preferred-install": {
-			"*": "dist",
-			"mariacdadalt": "source"
+			"mariacdadalt/*": "source",
+			"*": "dist"
 		},
 		"allow-plugins": {
 			"johnpbloch/wordpress-core-installer": true,
@@ -23,12 +23,17 @@
 	"repositories": [
 		{
 			"type": "composer",
+			"url": "https://mariacdadalt.github.io/composer-satis/"
+		},
+		{
+			"type": "composer",
 			"url": "https://wpackagist.org"
 		}
 	],
 	"require": {
 		"johnpbloch/wordpress": "^6",
-		"wecodemore/wpstarter": "^3"
+		"wecodemore/wpstarter": "^3",
+		"mariacdadalt/inpsyde-assessment": "dev-main"
 	},
 	"extra": {}
 }

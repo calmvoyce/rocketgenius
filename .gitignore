@@ -1,3 +1,4 @@
 .env
 .srl
 /vendor
+/composer-satis

@@ -2,13 +2,17 @@
 
 ## Generate root Certificate
 function cert_root_ca() {
-	openssl genrsa -des3 -passout pass:password -out .docker/nginx/certs/rootCA.key 2048
-	openssl req -x509 -new -nodes -key .docker/nginx/certs/rootCA.key -sha256 -days 1460 -passin pass:password -out .docker/nginx/certs/rootCA.pem -config .scripts/server.csr.cnf
+	if [ ! -f .docker/nginx/certs/rootCA.key ]; then
+    	openssl genrsa -des3 -passout pass:password -out .docker/nginx/certs/rootCA.key 2048
+		openssl req -x509 -new -nodes -key .docker/nginx/certs/rootCA.key -sha256 -days 1460 -passin pass:password -out .docker/nginx/certs/rootCA.pem -config .scripts/server.csr.cnf
+	fi
 }
 
 function cert_generate() {
-	openssl req -new -sha256 -nodes -passin pass:password -out .docker/nginx/certs/server.csr -newkey rsa:2048 -keyout .docker/nginx/certs/server.key -config .scripts/server.csr.cnf
-	openssl x509 -req -in .docker/nginx/certs/server.csr -CA .docker/nginx/certs/rootCA.pem -CAkey .docker/nginx/certs/rootCA.key -CAcreateserial -passin pass:password -out .docker/nginx/certs/server.crt -days 500 -sha256 -extfile .scripts/v3.ext
+	if [ ! -f .docker/nginx/certs/server.csr ]; then
+    	openssl req -new -sha256 -nodes -passin pass:password -out .docker/nginx/certs/server.csr -newkey rsa:2048 -keyout .docker/nginx/certs/server.key -config .scripts/server.csr.cnf
+		openssl x509 -req -in .docker/nginx/certs/server.csr -CA .docker/nginx/certs/rootCA.pem -CAkey .docker/nginx/certs/rootCA.key -CAcreateserial -passin pass:password -out .docker/nginx/certs/server.crt -days 500 -sha256 -extfile .scripts/v3.ext
+	fi
 }
 
 ## Install the certificate

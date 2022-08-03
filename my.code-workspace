@@ -1,6 +1,15 @@
 {
 	"folders": [
 		{
+			"path": "public/wp-content/plugins/inpsyde-assessment"
+		},
+		{
+			"path": "public/wp-content/mu-plugins/plugin-core"
+		},
+		{
+			"path": "composer-satis"
+		},
+		{
 			"path": "."
 		}
 	],
