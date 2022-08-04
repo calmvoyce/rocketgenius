@@ -48,7 +48,7 @@
 		"phpsab.fixerEnable": true,
 		"phpsab.snifferShowSources": true,
 		"phpsab.snifferMode": "onSave",
-		"phpsab.standard": "phpcs.xml",
+		"phpsab.standard": "Inpsyde",
 		"phpunit.files": "{test,tests,Test,Tests}/**/*-test.php"
 	}
 }

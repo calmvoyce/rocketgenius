@@ -54,7 +54,7 @@ workspace)
 
 	ssh -T git@github.com
 	
-	phpcs --config-set installed_paths /workspace/vendor/wp-coding-standards/wpcs
+	phpcs --config-set installed_paths ../../automattic/phpcs-neutron-standard,../../automattic/vipwpcs,../../inpsyde/php-coding-standards,../../phpcompatibility/php-compatibility,../../sirbrillig/phpcs-variable-analysis,../../wp-coding-standards/wpcs
 	;;
 *)
 	cat <<EOF
