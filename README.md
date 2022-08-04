@@ -14,13 +14,11 @@ This was especifically created to work with [WP Starter](https://wecodemore.gith
 
 ## Instalation
 
-- Create a `.env` file inside the root folder with the folowing content
-````
-USER_MAIL=YOUR_GIT_EMAIL
-USER_NAME=YOUR_COMMIT_NAME
-````
+- Copy the `.env.example` file inside the *root* folder and rename it to `.env`. Ensure the data inside is yours.
 
-- Create a `.env` file inside the public folder with the following content
+- Copy the `auth.json.example` file inside the *root* folder and rename it to `auth.json`. [Generate a Github Token](https://github.com/settings/tokens) and paste it inside the file.
+
+- Create a `.env` file inside the *public* folder with the following content
 ````
 WP_ENVIRONMENT_TYPE=local
 ````
@@ -29,6 +27,6 @@ WP_ENVIRONMENT_TYPE=local
 
 - Click in the green button in the bottom left corner of VSCode. Click on `Reopen in Container`
 
-- The container will start to build. Keep an eye on the terminal, it will ask for your password, so it can create the certificates.
+- The container will start to build. Keep an eye on the terminal, it will ask for your password so it can create the certificates.
 
 - Go to [https://wordpress.local](https://wordpress.local) to see it working.

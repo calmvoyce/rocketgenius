@@ -37,6 +37,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./.devcontainer/.ssh:/home/vscode/.ssh
       - ./vendor:/home/vscode/.composer/vendor
+      - ./auth.json:/home/vscode/.composer/auth.json
     depends_on:
       db:
         condition: service_healthy
