@@ -1,7 +1,2 @@
 *
-!.env.local
-!.gitignore
-!composer.json
-!composer.lock
-!phpinfo.php
-!xdebug.php
+!*/.gitignore

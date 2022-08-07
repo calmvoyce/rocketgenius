@@ -14,11 +14,14 @@ This was especifically created to work with [WP Starter](https://wecodemore.gith
 
 ## Instalation
 
-- Copy the `.env.example` file inside the *root* folder and rename it to `.env`. Ensure the data inside is yours.
+- Copy the following files, removing the `.example` extension from them and ensuring that all data represented by `{{ DATA_DESCRIPTION }}` is replaced by yours. For example: replace a `{{ YOUR_NAME }}` for `John Doe`.
+	- `.env.example` in the *root* folder
+	- `auth.json.example` in the *root* folder ( You will need to [Generate a Github Token](https://github.com/settings/tokens) )
+	- `hosts.example` in the *.scripts* folder
+	- `server.csr.cnf.example` in the *.scripts* folder
+	- `v3.ext.example` in the *.scripts* folder
 
-- Copy the `auth.json.example` file inside the *root* folder and rename it to `auth.json`. [Generate a Github Token](https://github.com/settings/tokens) and paste it inside the file.
-
-- Create a `.env` file inside the *public* folder with the following content
+- Create a `.env` file inside the *public/wordpress.local* folder with the following content
 ````
 WP_ENVIRONMENT_TYPE=local
 ````
@@ -30,3 +33,5 @@ WP_ENVIRONMENT_TYPE=local
 - The container will start to build. Keep an eye on the terminal, it will ask for your password so it can create the certificates.
 
 - Go to [https://wordpress.local](https://wordpress.local) to see it working.
+
+## How to add more projects
