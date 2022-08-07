@@ -1,15 +1,6 @@
 {
 	"folders": [
 		{
-			"path": "public/wp-content/plugins/inpsyde-assessment"
-		},
-		{
-			"path": "public/wp-content/mu-plugins/plugin-core"
-		},
-		{
-			"path": "composer-satis"
-		},
-		{
 			"path": "."
 		}
 	],
@@ -18,16 +9,6 @@
 			{
 				"command": "./workspace.sh init",
 				"name": "Init Containers",
-				"group": "Workspace's Command Line"
-			},
-			{
-				"command": "./workspace.sh down",
-				"name": "Delete All Containers",
-				"group": "Workspace's Command Line"
-			},
-			{
-				"command": "./workspace.sh cert",
-				"name": "Generate Certificates",
 				"group": "Workspace's Command Line"
 			}
 		],
@@ -49,6 +30,6 @@
 		"phpsab.snifferShowSources": true,
 		"phpsab.snifferMode": "onSave",
 		"phpsab.standard": "Inpsyde",
-		"phpunit.files": "{test,tests,Test,Tests}/**/*-test.php"
+		"phpunit.files": "{test,tests,Test,Tests}/**/*Test.php"
 	}
 }

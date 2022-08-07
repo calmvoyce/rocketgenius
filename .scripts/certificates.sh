@@ -2,25 +2,26 @@
 
 ## Generate root Certificate
 function cert_root_ca() {
-	if [ ! -f .docker/nginx/certs/rootCA.key ]; then
-    	openssl genrsa -des3 -passout pass:password -out .docker/nginx/certs/rootCA.key 2048
-		openssl req -x509 -new -nodes -key .docker/nginx/certs/rootCA.key -sha256 -days 1460 -passin pass:password -out .docker/nginx/certs/rootCA.pem -config .scripts/server.csr.cnf
+	if [ ! -f ../.docker/nginx/certs/rootCA.key ]; then
+    	openssl genrsa -des3 -passout pass:password -out ../.docker/nginx/certs/rootCA.key 2048
+		openssl req -x509 -new -nodes -key ../.docker/nginx/certs/rootCA.key -sha256 -days 1460 -passin pass:password -out ../.docker/nginx/certs/rootCA.pem -config server.csr.cnf
 	fi
 }
 
 function cert_generate() {
-	if [ ! -f .docker/nginx/certs/server.csr ]; then
-    	openssl req -new -sha256 -nodes -passin pass:password -out .docker/nginx/certs/server.csr -newkey rsa:2048 -keyout .docker/nginx/certs/server.key -config .scripts/server.csr.cnf
-		openssl x509 -req -in .docker/nginx/certs/server.csr -CA .docker/nginx/certs/rootCA.pem -CAkey .docker/nginx/certs/rootCA.key -CAcreateserial -passin pass:password -out .docker/nginx/certs/server.crt -days 500 -sha256 -extfile .scripts/v3.ext
+	if [ ! -f ../.docker/nginx/certs/server.csr ]; then
+    	openssl req -new -sha256 -nodes -passin pass:password -out ../.docker/nginx/certs/server.csr -newkey rsa:2048 -keyout ../.docker/nginx/certs/server.key -config server.csr.cnf
+		openssl x509 -req -in ../.docker/nginx/certs/server.csr -CA ../.docker/nginx/certs/rootCA.pem -CAkey ../.docker/nginx/certs/rootCA.key -CAcreateserial -passin pass:password -out ../.docker/nginx/certs/server.crt -days 500 -sha256 -extfile v3.ext
 	fi
 }
 
 ## Install the certificate
 function cert_install() {
+	cd ../.docker/nginx/certs
 	if [[ "$OSTYPE" == "darwin"* ]]; then
-		sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain ".docker/nginx/certs/server.crt"
+		sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain "server.crt"
 	elif [[ "$OSTYPE" == "linux-gnu" ]]; then
-		sudo ln -s "$(pwd)/.docker/nginx/certs/server.crt" "/usr/local/share/ca-certificates/server.crt"
+		sudo ln -s "server.crt" "/usr/local/share/ca-certificates/server.crt"
 		sudo update-ca-certificates
 	else
 		echo "Could not install the certificate on the host machine, please do it manually"
@@ -43,11 +44,14 @@ install)
 Certificate management commands.
 
 Usage:
-    workspace cert <command>
+    bash certificates.sh <command>
 
 Available commands:
-    generate .................................. Generate a new certificate
-    install ................................... Install the certificate
+    root ...................................... Generate root ca certificate. Needs server.csr.cnf file
+	generate .................................. Generate a new certificate. Needs to be run after the root command. Relies on
+												server.csr.cnf file and v3.ext file 
+    install ................................... Install the certificate in the host machine. Cannot be run inside the docker 
+												container
 
 EOF
 	;;
