@@ -7,9 +7,16 @@
 	"settings": {
 		"runTerminalCommand.commands": [
 			{
-				"command": "./workspace.sh init",
-				"name": "Init Containers",
-				"group": "Workspace's Command Line"
+				"command": "bash /workspace/workspace.sh init",
+				"name": "Init all Projects",
+				"group": "Workspace's Command Line",
+				"auto": true
+			},
+			{
+				"command": "bash /workspace/workspace.sh setup $PWD",
+				"name": "Setup Current Project",
+				"group": "Workspace's Command Line",
+				"auto": true
 			}
 		],
 		"intelephense.format.enable": false,

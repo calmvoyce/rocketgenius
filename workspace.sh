@@ -1,7 +1,9 @@
 #!/bin/bash
 
-if [ -f .env ]; then
-  export $(echo $(cat .env | sed 's/#.*//g'| xargs) | envsubst)
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+
+if [ -f $SCRIPT_DIR/.env ]; then
+  bash $SCRIPT_DIR/.scripts/export-env.sh $SCRIPT_DIR
 fi
 
 GREEN='\033[1;32m'
@@ -16,14 +18,25 @@ initialize-host)
 	bash certificates.sh install
 	;;
 init)
-	bash workspace.sh workspace
+	cd $SCRIPT_DIR
 	git config --global core.filemode false
 	git config --global pull.rebase false
 	composer install
 	cd public
-	composer install
-	wp db create
-	wp core install --url=wordpress.local --title=WordPress --admin_user=admin --admin_password=admin --admin_email=$USER_MAIL
+	for D in *; do [ -d "${D}" ] && bash $SCRIPT_DIR/workspace.sh setup "${D}"; done
+	bash $SCRIPT_DIR/workspace.sh workspace
+	;;
+setup)
+	cd $2
+	echo "$GREEN Setting up the $2 project $NC"
+	printf "\n\n"
+	if [ -f composer.json ]; then
+		composer install
+	fi
+	if [ -f wp-cli.yml ]; then
+		wp db create
+		wp core install --url=wordpress.local --title=WordPress --admin_user=admin --admin_password=admin --admin_email=$USER_MAIL
+	fi
 	;;
 workspace)
 	if [ ! -f /home/vscode/.ssh/id_rsa ]; then
@@ -56,11 +69,12 @@ workspace)
 Command line interface of the Workspace project.
 
 Usage:
-    bash workspace.sh <command>
+    bash workspace.sh <command> [options]
 
 Available commands:
     initialize-host ........................... Command specific to be used in the host, NOT the Docker container
     init ...................................... Initiates the projects, installing composer dependencies
+	setup [directory] ......................... Setups a WordPress project inside the directory passed in the options
     workspace ................................. Runs configurations for the workspace, relies in .env file
 
 EOF

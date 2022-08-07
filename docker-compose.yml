@@ -10,7 +10,7 @@ services:
       - 80:80
       - 443:443
     volumes:
-      - ./public:/var/www/wordpress
+      - ./public:/var/www
       - ./.docker/nginx/conf.d:/etc/nginx/conf.d
       - phpmyadmindata:/var/www/phpmyadmin
       - ./.docker/nginx/certs:/etc/nginx/certs
@@ -31,7 +31,7 @@ services:
       - 9000:9000
       - 9003:9003
     volumes:
-      - ./public:/var/www/wordpress:cached
+      - ./public:/var/www:cached
       - ./.scripts:/.scripts
       - .:/workspace:cached
       - /var/run/docker.sock:/var/run/docker.sock
