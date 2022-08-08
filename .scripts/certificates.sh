@@ -19,7 +19,7 @@ function cert_generate() {
 function cert_install() {
 	cd ../.docker/nginx/certs
 	if [[ "$OSTYPE" == "darwin"* ]]; then
-		sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain "server.crt"
+		sudo security add-trusted-cert -d -r trustRoot -k "/Library/Keychains/System.keychain" server.crt
 	elif [[ "$OSTYPE" == "linux-gnu" ]]; then
 		sudo ln -s "server.crt" "/usr/local/share/ca-certificates/server.crt"
 		sudo update-ca-certificates
