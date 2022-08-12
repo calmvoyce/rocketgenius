@@ -1,6 +1,7 @@
 #!/bin/bash
 
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+printf "${GREEN} Running from ${SCRIPT_DIR} ${NC}\n\n"
 
 if [ -f $SCRIPT_DIR/.env ]; then
   bash $SCRIPT_DIR/.scripts/export-env.sh $SCRIPT_DIR
@@ -28,8 +29,7 @@ init)
 	;;
 setup)
 	cd $2
-	echo "$GREEN Setting up the $2 project $NC"
-	printf "\n\n"
+	printf "${GREEN} Setting up the ${2} project ${NC}\n\n"
 	if [ -f composer.json ]; then
 		composer install
 	fi
@@ -58,6 +58,7 @@ workspace)
 	git config --global mergetool.vscode.cmd 'code --wait $MERGED'
 	git config --global diff.tool vscode
 	git config --global difftool.vscode.cmd 'code --wait --diff $LOCAL $REMOTE'
+	printf "${GREEN} Setting github user to ${USER_NAME} <${USER_MAIL}> ${NC}\n\n"
 
 	ssh -T git@github.com
 	

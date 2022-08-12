@@ -4,3 +4,4 @@ auth.json
 my.code-workspace
 /vendor
 /composer-satis
+.DS_Store

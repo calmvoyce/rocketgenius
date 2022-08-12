@@ -17,6 +17,18 @@
 				"name": "Setup Current Project",
 				"group": "Workspace's Command Line",
 				"auto": true
+			},
+			{
+				"command": "composer update",
+				"name": "Update Composer",
+				"group": "Composer's Commands",
+				"auto": true
+			}
+			{
+				"command": "composer install",
+				"name": "Install Composer",
+				"group": "Composer's Commands",
+				"auto": true
 			}
 		],
 		"intelephense.format.enable": false,
