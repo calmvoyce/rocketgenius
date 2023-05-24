@@ -11,3 +11,4 @@ then
 fi
 
 sudo cat hosts >> /etc/hosts
+echo "New Values Added"

@@ -5,7 +5,7 @@ default_md = sha256
 distinguished_name = dn
 
 [dn]
-C={{ YOUR_COUNTRY }}
+C={{ YOUR_COUNTRY_WITH_TWO_DIGITS }}
 ST={{ YOUR_STATE }}
 L={{ YOUR_CITY }}
 O={{ YOUR_ORGANIZATION }}

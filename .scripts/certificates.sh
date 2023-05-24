@@ -20,9 +20,11 @@ function cert_install() {
 	cd ../.docker/nginx/certs
 	if [[ "$OSTYPE" == "darwin"* ]]; then
 		sudo security add-trusted-cert -d -r trustRoot -k "/Library/Keychains/System.keychain" server.crt
+		echo "Root certificate has been added to the MAC client"
 	elif [[ "$OSTYPE" == "linux-gnu" ]]; then
 		sudo ln -s "server.crt" "/usr/local/share/ca-certificates/server.crt"
 		sudo update-ca-certificates
+		echo "Root certificate has been added to the Linux client"
 	else
 		echo "Could not install the certificate on the host machine, please do it manually"
 	fi
