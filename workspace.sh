@@ -1,14 +1,14 @@
 #!/bin/bash
+GREEN='\033[1;32m'
+NC='\033[0m'
 
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 printf "${GREEN} Running from ${SCRIPT_DIR} ${NC}\n\n"
 
 if [ -f $SCRIPT_DIR/.env ]; then
-  bash $SCRIPT_DIR/.scripts/export-env.sh $SCRIPT_DIR
+  export $(grep -v '^#' $SCRIPT_DIR/.env | xargs -d '\n')
+  printf "${GREEN} Imported user data: ${USER_NAME} <${USER_MAIL}> ${NC}\n\n"
 fi
-
-GREEN='\033[1;32m'
-NC='\033[0m'
 
 case "$1" in
 initialize-host)
@@ -39,13 +39,13 @@ setup)
 	fi
 	;;
 workspace)
-	if [ ! -f /home/vscode/.ssh/id_rsa ]; then
-    	ssh-keygen -v -t ed25519 -C $USER_MAIL -f /home/vscode/.ssh/id_rsa -N ''
+	if [ ! -f .devcontainer/.ssh/id_rsa ]; then
+    	ssh-keygen -t ed25519 -f .devcontainer/.ssh/id_rsa -N ''
 	fi
 	eval "$(ssh-agent -s)"
-	ssh-add /home/vscode/.ssh/id_rsa
+	ssh-add .devcontainer/.ssh/id_rsa
 	printf "${GREEN}Copy the content bellow into the following github page: https://github.com/settings/ssh/new${NC} \n\n"
-	cat /home/vscode/.ssh/id_rsa.pub
+	cat .devcontainer/.ssh/id_rsa.pub
 	printf "\n\n"
 	read -p "Press any key when you're done..."
 	ssh-add -l -E sha256
